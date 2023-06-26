@@ -1,18 +1,33 @@
+/* eslint-disable react/prop-types */
 import { GiExitDoor } from "react-icons/gi";
-import { CgMenuRight } from "react-icons/cg";
+import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
 
 import logo from "../../assets/logo.png";
 import { useTheme } from "../../provider/theme/themeProvider";
-const Header = () => {
+const Header = ({toggleSideBar,setToggleSideBar}) => {
   const { isDarkMode, toggleTheme } = useTheme();
   return (
     <div className="dark:bg-slate-900 bg-blue-50 py-2">
       <div className="container px-4 md:px-8 mx-auto flex items-center justify-between  ">
         {/* logo */}
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-2 ">
           <img src={logo} alt="logo of futurus" className="w-32 " />
           <span className="text-3xl text-slate-900 dark:text-blue-50 md:hidden">
-            <CgMenuRight />
+            
+          <label title="toggle theme" className="swap swap-rotate">
+            {/* this hidden checkbox controls the state */}
+            <input
+              type="checkbox"
+              className=""
+              onChange={()=>setToggleSideBar(!toggleSideBar)}
+              checked={toggleSideBar}
+            />
+
+             <CgMenuRight className="swap-on fill-current w-8 h-8" />
+
+             <CgMenuLeft className="swap-off fill-current  w-8 h-8" />
+            
+          </label>
           </span>
         </div>
 
@@ -31,7 +46,7 @@ const Header = () => {
 
             {/* sun icon */}
             <svg
-              className="swap-on fill-current w-10 h-10"
+              className="swap-on fill-current w-8 h-8 md:w-10 md:h-10"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -40,7 +55,7 @@ const Header = () => {
 
             {/* moon icon */}
             <svg
-              className="swap-off fill-current w-10 h-10"
+              className="swap-off fill-current w-8 h-8 md:w-10 md:h-10"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
