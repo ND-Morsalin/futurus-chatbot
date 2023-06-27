@@ -42,7 +42,7 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
     <div
       className={` ${
         toggleSideBar ? "absolute w-full" : "w-fit"
-      } md:relative h-[calc(100vh-70px)] flex`}
+      } md:relative h-[calc(100vh-70px)] flex z-30`}
     >
       <div
         className={`md:w-[200px] ${
@@ -56,8 +56,8 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
               toggleSideBar ? "justify-start" : "justify-center"
             }`}
           >
-            <div className=" relative z-10 p-px md:p-1">
-              <div className="relative p-2 bg-white dark:bg-slate-900 rounded-full flex items-center justify-between gap-2 z-20 ">
+            <div className=" relative z-40 p-px md:p-1">
+              <div className="relative p-2 bg-white dark:bg-slate-900 rounded-full flex items-center justify-between gap-2 z-30 ">
                 <img
                   src={isDarkMode ? item.iconWhite : item.icon}
                   alt={item.name}
