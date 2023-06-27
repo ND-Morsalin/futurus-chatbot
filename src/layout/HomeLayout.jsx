@@ -16,7 +16,9 @@ const HomeLayout = () => {
           toggleSideBar={toggleSideBar}
           setToggleSideBar={setToggleSideBar}
         />
-        <Outlet />
+        <div className="h-[calc(100vh-70px)] dark:bg-slate-800 container md:p-8 p-4  mx-auto">
+          <Outlet />
+        </div>
       </div>
     </>
   );

@@ -1,33 +1,32 @@
 /* eslint-disable react/prop-types */
 import { GiExitDoor } from "react-icons/gi";
-import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
+import { CgMenu, CgMenuRight } from "react-icons/cg";
 
 import logo from "../../assets/logo.png";
+import logoLite from "../../assets/logoLite.png";
 import { useTheme } from "../../provider/theme/themeProvider";
-const Header = ({toggleSideBar,setToggleSideBar}) => {
+const Header = ({ toggleSideBar, setToggleSideBar }) => {
   const { isDarkMode, toggleTheme } = useTheme();
   return (
     <div className="dark:bg-slate-900 bg-blue-50 py-2">
       <div className="container px-4 md:px-8 mx-auto flex items-center justify-between  ">
         {/* logo */}
         <div className="flex items-center gap-2 ">
-          <img src={logo} alt="logo of futurus" className="w-32 " />
+          <img src={isDarkMode?logoLite:logo} alt="logo of futurus" className="w-32 " />
           <span className="text-3xl text-slate-900 dark:text-blue-50 md:hidden">
-            
-          <label title="toggle theme" className="swap swap-rotate">
-            {/* this hidden checkbox controls the state */}
-            <input
-              type="checkbox"
-              className=""
-              onChange={()=>setToggleSideBar(!toggleSideBar)}
-              checked={toggleSideBar}
-            />
+            <label title="toggle theme" className="swap swap-rotate">
+              {/* this hidden checkbox controls the state */}
+              <input
+                type="checkbox"
+                className=""
+                onChange={() => setToggleSideBar(!toggleSideBar)}
+                checked={toggleSideBar}  
+              />
 
-             <CgMenuRight className="swap-on fill-current w-8 h-8" />
+              <CgMenu className="swap-on fill-current w-8 h-8" />
 
-             <CgMenuLeft className="swap-off fill-current  w-8 h-8" />
-            
-          </label>
+              <CgMenuRight className="swap-off fill-current  w-8 h-8" />
+            </label>
           </span>
         </div>
 
@@ -64,7 +63,10 @@ const Header = ({toggleSideBar,setToggleSideBar}) => {
           </label>
 
           {/* exit button */}
-          <span title="Log out" className="text-3xl text-slate-900 dark:text-blue-50">
+          <span
+            title="Log out"
+            className="text-3xl text-slate-900 dark:text-blue-50"
+          >
             <GiExitDoor />
           </span>
         </div>

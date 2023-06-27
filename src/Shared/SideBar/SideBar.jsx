@@ -42,7 +42,7 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
     <div
       className={` ${
         toggleSideBar ? "absolute w-full" : "w-fit"
-      } md:relative h-[calc(100vh-65px)] flex`}
+      } md:relative h-[calc(100vh-70px)] flex`}
     >
       <div
         className={`md:w-[200px] ${
@@ -72,14 +72,14 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
                 </p>
                 {/* gradient border */}
               </div>
-              <div className="absolute w-full h-full bg-gradient-to-tl from-[#0066FF]  to-[#FF00E5]   bg-red-500 left-0 top-0 z-0 rounded-full "></div>
+              <div className="absolute w-full h-full bg-gradient-to-tl from-gradient-blue  to-gradient-pink  left-0 top-0 z-0 rounded-full "></div>
             </div>
           </div>
         ))}
       </div>
       <div
         onClick={() => setToggleSideBar(!toggleSideBar)}
-        className="flex-1 md:hidden cursor-pointer h-full bg-red-900/20"
+        className="flex-1 md:hidden cursor-pointer h-full bg-slate-500/50"
       ></div>
     </div>
   );

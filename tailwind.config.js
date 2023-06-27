@@ -6,13 +6,21 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+
+        gradient: {
+          blue: '#0066FF',
+          pink: '#FF00E5'
+        }
+      },
+    },
   },
-  
+
   plugins: [require("daisyui")],
   darkMode: ['class'],
   daisyui: {
-    themes: ['dark','light'],
+    themes: ['dark', 'light'],
   },
 }
 
