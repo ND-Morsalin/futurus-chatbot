@@ -1,32 +1,37 @@
 import "regenerator-runtime";
-import { BsFillMicFill, BsFillMicMuteFill } from "react-icons/bs";
 import speech, { useSpeechRecognition } from "react-speech-recognition";
 import { useEffect } from "react";
+import MicButton from "../../components/MicButton/MicButton";
+
+// speech synthesis instance
 const synthesis = window.speechSynthesis;
+
 const Home = () => {
-  const { listening, transcript ,browserSupportsSpeechRecognition} = useSpeechRecognition();
+  const { listening, transcript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
 
   useEffect(() => {
-    if(!listening && transcript){
+    // if not listening and has transcript then 
+    if (!listening && transcript) {
       // text to speech
       const utterance = new SpeechSynthesisUtterance(transcript);
       // language
       utterance.lang = "en-IN";
       // voice
       utterance.voice = speechSynthesis.getVoices()[89];
-      
+
       synthesis.speak(utterance);
-      
     }
+  }, [listening, transcript]);
 
-  }, [listening , transcript]);
-
-  if(!browserSupportsSpeechRecognition){
-    return <div className="flex items-center justify-center mb-8">
-    <div className=" w-12 h-12 rounded-full bg-gradient-to-tr from-gradient-blue to-gradient-pink flex items-center justify-center text-3xl text-white  ">
-      🎙 your browser doesn't support speech recognition
-    </div>
-  </div>
+  if (!browserSupportsSpeechRecognition) {
+    return (
+      <div className="flex items-center justify-center mb-8">
+        <div className=" w-12 h-12 rounded-full bg-gradient-to-tr from-gradient-blue to-gradient-pink flex items-center justify-center text-3xl text-white  ">
+          🎙 your browser doesn't support speech recognition
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -36,30 +41,25 @@ const Home = () => {
           {listening ? (
             <>
               <div className="text-center font-bold">Listening...</div>
-              
             </>
           ) : (
             <div className="text-center">
               Press the button and start speaking
             </div>
           )}
-          
-            {transcript && <div className="text-center">{transcript}</div>}
+
+          {transcript && <div className="text-center">{transcript}</div>}
         </div>
         {/* gradient border */}
         <div className="absolute top-0 left-0 w-full h-full rounded-md bg-gradient-to-tr from-gradient-blue to-gradient-pink -z-0"></div>
       </div>
-      {/* <VoiceToText /> */}
+
       <div className="flex items-center justify-center mb-8">
-        <button
-          onClick={() => {
-            listening ? speech.stopListening() : speech.startListening();
-          }}
-          title="Start/Stop Listening"
-          className=" w-12 h-12 rounded-full bg-gradient-to-tr from-gradient-blue to-gradient-pink flex items-center justify-center text-3xl text-white  "
-        >
-          {listening ? <BsFillMicMuteFill /> : <BsFillMicFill />}
-        </button>
+        <MicButton
+          listening={listening}
+          startListening={speech.startListening}
+          stopListening={speech.stopListening}
+        />
       </div>
     </div>
   );

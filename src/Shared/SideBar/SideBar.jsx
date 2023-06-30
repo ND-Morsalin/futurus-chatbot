@@ -46,7 +46,7 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
     >
       <div
         className={`md:w-[200px] ${
-          toggleSideBar ? "w-fit" : " w-20"
+          toggleSideBar ? "w-fit" : " w-[74px]"
         }  h-full  bg-blue-50 dark:bg-slate-900  space-y-3 px-4 py-8`}
       >
         {sideItems.map((item) => (
@@ -56,8 +56,8 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
               toggleSideBar ? "justify-start" : "justify-center"
             }`}
           >
-            <div className=" relative z-40 p-px md:p-1">
-              <div className="relative p-2 bg-white dark:bg-slate-900 rounded-full flex items-center justify-between gap-2 z-30 ">
+            <div className={`relative z-40 p-px md:p-1 w-full `}>
+              <div className="relative p-2 bg-white dark:bg-slate-900 rounded-full flex items-center z-30  ">
                 <img
                   src={isDarkMode ? item.iconWhite : item.icon}
                   alt={item.name}
