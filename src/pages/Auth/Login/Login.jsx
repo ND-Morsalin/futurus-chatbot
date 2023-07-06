@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../provider/Auth/AuthProvider";
-import { FaGithub, FaGoogle } from "react-icons/fa";
 import validator from "../../../utility/validator";
 // import toast from "react-hot-toast";
 
 const Login = () => {
-  const {
+  /*  const {
     login,
     loginWithGoogle,
     loginWithGithub,
@@ -14,32 +12,36 @@ const Login = () => {
     error,
     setError,
     forgetPassword,
-  } = useAuth();
+  } = useAuth(); */
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [inputError, setInputError] = useState(error);
+  const [inputError, setInputError] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
 
+  // handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // validate input
     if (validator(email, password)) {
       setInputError(validator(email, password));
       return;
     }
     try {
-      await login(email, password);
+      //todo send login request to server
+
       // redirect to previous page
       navigate(location?.state?.from?.pathname || "/");
     } catch (error) {
-      console.log(error.message);
-      setLoading(false);
-      setError(error.message);
+      // console.log(error.message);
+      // setLoading(false);
+      // setError(error.message);
       setInputError(error.message);
     }
   };
-
+  /* 
   // login with google
   const handleGoogleLogin = async () => {
     try {
@@ -67,7 +69,7 @@ const Login = () => {
       setInputError(error.message);
     }
   };
-
+// handle forget password
   const handleForgetPassword = async () => {
     if (!email) {
       setInputError("Please enter your email for password reset        ");
@@ -75,9 +77,9 @@ const Login = () => {
     }
     try {
       await forgetPassword(email);
-      /* toast("Don't worry if the email goes to the spam folder", {
-        icon: "👏",
-      }); */
+      // toast("Don't worry if the email goes to the spam folder", {
+      //   icon: "👏",
+      // });
       setLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -85,7 +87,7 @@ const Login = () => {
       setError(error.message);
       setInputError(error.message);
     }
-  };
+  }; */
   return (
     <div className="container px-8 mx-auto">
       <>
@@ -95,8 +97,8 @@ const Login = () => {
             <div className="relative p-10 bg-slate-900 shadow-lg sm:rounded-3xl ">
               <div className="max-w-md mx-auto">
                 <div>
-                  <h1 className="text-2xl font-semibold">
-                    Login Form with Floating Labels
+                  <h1 className="text-2xl font-semibold text-white">
+                    Login To Futurus ChatBot
                   </h1>
                 </div>
                 <form
@@ -155,35 +157,39 @@ const Login = () => {
                         Submit
                       </button>
                     </div>
-                    <p className="text-red-500">{inputError || error}</p>
+                    <p className="text-red-500">{inputError}</p>
                     <h5 className="text-green-400">
                       {" "}
                       Forget password{" "}
                       <span
-                        onClick={handleForgetPassword}
+                        // onClick={handleForgetPassword}
                         className="font-bold cursor-pointer"
                       >
                         send an email
                       </span>
                     </h5>
 
-                    <div className="space-y-4">
+                    {/* Social Login */}
+
+                    {/* <div className="space-y-4">
                       <button
                         type="button"
-                        onClick={handleGoogleLogin}
+                        // onClick={handleGoogleLogin}
                         className="btn bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 text-white items-center gap-4 w-full"
                       >
                         Login with google <FaGoogle />
                       </button>
                       <button
                         type="button"
-                        onClick={handleGithubLogin}
+                        // onClick={handleGithubLogin}
                         className="btn bg-gradient-to-r from-blue-800  to-purple-900 text-white items-center gap-4 w-full"
                       >
                         Login with GitHub <FaGithub />
                       </button>
-                    </div>
-                    <p className="">
+                    </div> */}
+                    {/* Social Login */}
+
+                    <p className="text-slate-300">
                       Don&apos;t have any account please{" "}
                       <Link className="text-emerald-500" to="/auth/register">
                         create

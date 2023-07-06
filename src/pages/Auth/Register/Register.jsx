@@ -1,19 +1,17 @@
 import { useState } from "react";
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../provider/Auth/AuthProvider";
 import validator from "../../../utility/validator";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { register, error, loading } = useAuth();
-  const [name, setName] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
+  // const { register, error, loading } = useAuth();
+  // const [name, setName] = useState("");
+  // const [photoUrl, setPhotoUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [inputError, setInputError] = useState(error);
+  const [inputError, setInputError] = useState();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,20 +22,9 @@ const Register = () => {
 
     // console.log(name, photoUrl, email, password);
     try {
-      const currentUser = await register(email, password, name, photoUrl);
+      // send register request to server
 
       // redirect to previous page
-      if (error || !currentUser) {
-        console.log("location error", {
-          location,
-          error,
-          inputError,
-          loading,
-          currentUser,
-        });
-
-        return;
-      }
 
       navigate(location?.state?.from?.pathname || "/", { replace: true });
     } catch (error) {
@@ -46,7 +33,6 @@ const Register = () => {
       console.log(error.message);
     }
   };
-  console.log({ error, inputError });
 
   return (
     <div className="container px-8 mx-auto">
@@ -57,18 +43,18 @@ const Register = () => {
             <div className="relative p-10 bg-slate-900 shadow-lg sm:rounded-3xl">
               <div className="max-w-md mx-auto">
                 <div>
-                  <h1 className="text-2xl font-semibold">Create an account</h1>
+                  <h1 className="text-2xl font-semibold text-white">Create an account</h1>
                 </div>
                 <form
                   onSubmit={handleSubmit}
                   className="divide-y divide-gray-200"
                 >
                   <div className="py-8 text-base leading-6 space-y-8 text-gray-700 sm:text-lg sm:leading-7">
-                    <div className="relative">
+                    {/* <div className="relative">
                       <input
                         id="name"
                         name="name"
-                        onChange={(e) => setName(e.target.value)}
+                        // onChange={(e) => setName(e.target.value)}
                         type="text"
                         className="peer placeholder-transparent rounded-lg px-4 py-2 w-full text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter your name"
@@ -85,7 +71,7 @@ const Register = () => {
                       <input
                         id="photoUrl"
                         name="photoUrl"
-                        onChange={(e) => setPhotoUrl(e.target.value)}
+                        // onChange={(e) => setPhotoUrl(e.target.value)}
                         type="text"
                         className="peer placeholder-transparent rounded-lg px-4 py-2 w-full text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter your photoUrl"
@@ -97,7 +83,7 @@ const Register = () => {
                         Enter your photoUrl{" "}
                         <span className="ms-2 text-info">Optional</span>
                       </label>
-                    </div>
+                    </div> */}
                     <div className="relative">
                       <input
                         id="email"
@@ -139,18 +125,18 @@ const Register = () => {
                         <span className="ms-2 text-warning">required</span>
                       </label>
                     </div>
-                    <p className="">
-                      <span className="text-red-500">
-                        {inputError || error}
-                      </span>
-                    </p>
+                    {inputError && (
+                      <p className="">
+                        <span className="text-red-500">{inputError}</span>
+                      </p>
+                    )}
 
                     <div className="relative">
                       <button
                         // onClick={handleSubmit}
                         type="submit"
                         className={`${
-                          email === "" || password === "" || inputError
+                          email === "" || password === "" /* || inputError */
                             ? "bg-blue-800"
                             : "bg-blue-500"
                         } text-white rounded-md px-2 py-1 `}

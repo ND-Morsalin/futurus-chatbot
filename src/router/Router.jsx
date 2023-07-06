@@ -5,6 +5,12 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register"; */
 import Error from "../pages/Error/Error";
+import Register from "../pages/Auth/Register/Register";
+import Login from "../pages/Auth/Login/Login";
+import AuthLayout from "../layout/AuthLayout";
+import Private from "../layout/PrivateLayout";
+import PrivateLayout from "../layout/PrivateLayout";
+import Practice from "../pages/PracticeRound/Practice";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +24,18 @@ const router = createBrowserRouter([
       },
     ],
   },
-  /* {
-    path: "/auth",
+  {
+    path: "bot",
+    element: <PrivateLayout />,
+    children: [
+      {
+        path: "",
+        element: <Practice />,
+      },
+    ],
+  },
+   {
+    path: "auth",
     element: <AuthLayout />,
     children: [
       {
@@ -31,7 +47,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
-  }, */
+  }, /**/
 ]);
 
 export default router;

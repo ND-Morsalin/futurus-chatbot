@@ -1,66 +1,49 @@
+import { Link } from "react-router-dom";
 import "regenerator-runtime";
-import speech, { useSpeechRecognition } from "react-speech-recognition";
-import { useEffect } from "react";
-import MicButton from "../../components/MicButton/MicButton";
 
-// speech synthesis instance
-const synthesis = window.speechSynthesis;
 
 const Home = () => {
-  const { listening, transcript, browserSupportsSpeechRecognition } =
-    useSpeechRecognition();
-
-  useEffect(() => {
-    // if not listening and has transcript then 
-    if (!listening && transcript) {
-      // text to speech
-      const utterance = new SpeechSynthesisUtterance(transcript);
-      // language
-      utterance.lang = "en-IN";
-      // voice
-      utterance.voice = speechSynthesis.getVoices()[89];
-
-      synthesis.speak(utterance);
-    }
-  }, [listening, transcript]);
-
-  if (!browserSupportsSpeechRecognition) {
-    return (
-      <div className="flex items-center justify-center mb-8">
-        <div className=" w-12 h-12 rounded-full bg-gradient-to-tr from-gradient-blue to-gradient-pink flex items-center justify-center text-3xl text-white  ">
-          🎙 your browser doesn't support speech recognition
-        </div>
-      </div>
-    );
-  }
-
+  
   return (
-    <div className="flex flex-col justify-end h-full flex-1">
-      <div className="mb-16 mx-auto rounded-md border-2 border-transparent relative z-10 p-1 md:w-2/3 w-11/12  overflow-auto h-fit">
-        <div className="relative overflow-auto h-full z-10 bg-white dark:bg-slate-900 rounded-md p-4 dark:text-white text-slate-900">
-          {listening ? (
-            <>
-              <div className="text-center font-bold">Listening...</div>
-            </>
-          ) : (
-            <div className="text-center">
-              Press the button and start speaking
-            </div>
-          )}
-
-          {transcript && <div className="text-center">{transcript}</div>}
+    <div className="bg-gray-100 min-h-screen">
+      <header className="py-16">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+            Welcome to Futurus!
+          </h1>
+          <p className="text-lg text-center text-gray-600">
+            We are shaping the future with AI technology.
+          </p>
         </div>
-        {/* gradient border */}
-        <div className="absolute top-0 left-0 w-full h-full rounded-md bg-gradient-to-tr from-gradient-blue to-gradient-pink -z-0"></div>
-      </div>
+      </header>
 
-      <div className="flex items-center justify-center mb-8">
-        <MicButton
-          listening={listening}
-          startListening={speech.startListening}
-          stopListening={speech.stopListening}
-        />
-      </div>
+      <section className="bg-blue-500 py-16">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center mb-8">
+            <Link
+              to="/bot"
+              className="bg-white text-blue-500 px-6 py-3 rounded-lg text-lg font-semibold transition duration-300 hover:bg-blue-200"
+            >
+             Start
+            </Link>
+          </div>
+          <h2 className="text-3xl font-bold text-center text-white mb-4">
+            Join Us Today!
+          </h2>
+          <p className="text-lg text-center text-white">
+            Experience the possibilities of AI with Futurus. Contact us now to
+            get started.
+          </p>
+        </div>
+      </section>
+
+      <footer className="bg-gray-200 py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-600">
+            &copy; {new Date().getFullYear()} Futurus. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
