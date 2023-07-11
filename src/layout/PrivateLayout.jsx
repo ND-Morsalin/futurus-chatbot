@@ -30,7 +30,7 @@ const PrivateLayout = ({ children }) => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   const { isDarkMode } = useTheme();
   console.log(isDarkMode);
-  if (!localStorage.getItem("jwtToken")) {
+  if (!localStorage.getItem("access_token")) {
     return (
       <Navigate
         to={"/auth/login"}

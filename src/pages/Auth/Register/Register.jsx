@@ -1,6 +1,7 @@
 import { useState } from "react";
 import validator from "../../../utility/validator";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import axiosInstance from "../../../utility/axiosInstance";
 
 const Register = () => {
   const location = useLocation();
@@ -20,13 +21,20 @@ const Register = () => {
       return;
     }
 
-    // console.log(name, photoUrl, email, password);
+    console.log({ email, password });
     try {
       // send register request to server
 
       // redirect to previous page
 
-      navigate(location?.state?.from?.pathname || "/", { replace: true });
+      const res = await axiosInstance.post("register", {
+        username: email,
+        password,
+      });
+      const data = res.data;
+      console.log("data", data);
+
+      navigate('auth/login');
     } catch (error) {
       console.log("location catch", location, error, error.message, inputError);
       console.error(error);
@@ -43,7 +51,9 @@ const Register = () => {
             <div className="relative p-10 bg-slate-900 shadow-lg sm:rounded-3xl">
               <div className="max-w-md mx-auto">
                 <div>
-                  <h1 className="text-2xl font-semibold text-white">Create an account</h1>
+                  <h1 className="text-2xl font-semibold text-white">
+                    Create an account
+                  </h1>
                 </div>
                 <form
                   onSubmit={handleSubmit}

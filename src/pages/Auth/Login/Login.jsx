@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import validator from "../../../utility/validator";
+import axiosInstance from "../../../utility/axiosInstance";
 // import toast from "react-hot-toast";
 
 const Login = () => {
@@ -30,7 +31,17 @@ const Login = () => {
       return;
     }
     try {
+      console.log({email,password})
       //todo send login request to server
+      const res = await axiosInstance.post("login", {
+        username: email,
+        password,
+      });
+      const data = res.data;
+      console.log(data.access_token);
+
+      
+      localStorage.setItem('access_token',data?.access_token)
 
       // redirect to previous page
       navigate(location?.state?.from?.pathname || "/");
