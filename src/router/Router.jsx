@@ -8,9 +8,11 @@ import Error from "../pages/Error/Error";
 import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
 import AuthLayout from "../layout/AuthLayout";
-import Private from "../layout/PrivateLayout";
 import PrivateLayout from "../layout/PrivateLayout";
 import Practice from "../pages/PracticeRound/Practice";
+import HRround from "../pages/HRround/HRround";
+import IELTS from "../pages/IELTS/IELTS";
+import Finance from "../pages/Finance/Finance";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +34,21 @@ const router = createBrowserRouter([
         path: "",
         element: <Practice />,
       },
+      {
+        path: "hrround",
+        element: <HRround />,
+      },
+      {
+        path: "finance",
+        element: <Finance />,
+      },
+      {
+        path: "ielts",
+        element: <IELTS />,
+      },
     ],
   },
-   {
+  {
     path: "auth",
     element: <AuthLayout />,
     children: [
@@ -47,7 +61,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
-  }, /**/
+  } /**/,
 ]);
 
 export default router;

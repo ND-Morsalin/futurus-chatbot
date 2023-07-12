@@ -5,33 +5,46 @@ import { CgMenu, CgMenuRight } from "react-icons/cg";
 import logo from "../../assets/logo.png";
 import logoLite from "../../assets/logoLite.png";
 import { useTheme } from "../../provider/theme/themeProvider";
-import { NavLink } from "react-router-dom";
-const Header = ({ toggleSideBar, setToggleSideBar,sidebar }) => {
+import { NavLink, useNavigate } from "react-router-dom";
+const Header = ({ toggleSideBar, setToggleSideBar, sidebar }) => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/auth/login");
+  };
   return (
     <div className="dark:bg-slate-900 bg-blue-50 py-2">
       <div className="container px-4 md:px-8 mx-auto flex items-center justify-between  ">
         {/* logo */}
-       <NavLink to={'/'} >
-       <div className="flex items-center gap-2 ">
-          <img src={isDarkMode?logoLite:logo} alt="logo of futurus" className="w-28 " />
-         { sidebar &&<span className="text-3xl text-slate-900 dark:text-blue-50 md:hidden">
-            <label title="toggle theme" className="swap swap-rotate">
-              {/* this hidden checkbox controls the state */}
-              <input
-                type="checkbox"
-                className=""
-                onChange={() => setToggleSideBar(!toggleSideBar)}
-                checked={toggleSideBar}  
-              />
+        
+          <div className="flex items-center gap-2 ">
+          <NavLink to={"/"}><img
+              src={isDarkMode ? logoLite : logo}
+              alt="logo of futurus"
+              className="w-28 "
+            />
+            </NavLink>
+            {sidebar && (
+              <span className="text-3xl text-slate-900 dark:text-blue-50 md:hidden">
+                <label title="toggle theme" className="swap swap-rotate">
+                  {/* this hidden checkbox controls the state */}
+                  <input
+                    type="checkbox"
+                    className=""
+                    onChange={() => setToggleSideBar(!toggleSideBar)}
+                    checked={toggleSideBar}
+                  />
 
-              <CgMenu className="swap-on fill-current w-8 h-8" />
+                  <CgMenu className="swap-on fill-current w-8 h-8" />
 
-              <CgMenuRight className="swap-off fill-current  w-8 h-8" />
-            </label>
-          </span>}
-        </div>
-       </NavLink>
+                  <CgMenuRight className="swap-off fill-current  w-8 h-8" />
+                </label>
+              </span>
+            )}
+          </div>
+        
 
         {/*  */}
         <div className="flex items-center gap-4">
@@ -66,12 +79,14 @@ const Header = ({ toggleSideBar, setToggleSideBar,sidebar }) => {
           </label>
 
           {/* exit button */}
-          <span
-            title="Log out"
-            className="text-3xl text-slate-900 dark:text-blue-50"
-          >
-            <GiExitDoor />
-          </span>
+          <button onClick={logout} className="">
+            <span
+              title="Log out"
+              className="text-3xl text-slate-900 dark:text-blue-50"
+            >
+              <GiExitDoor />
+            </span>
+          </button>
         </div>
       </div>
     </div>

@@ -5,19 +5,19 @@ import "regenerator-runtime";
 const Home = () => {
   
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <header className="py-16">
+    <div className="bg-gray-100 ">
+      <header className="py-12 dark:bg-slate-950 ">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+          <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-4">
             Welcome to Futurus!
           </h1>
-          <p className="text-lg text-center text-gray-600">
+          <p className="text-lg text-center text-gray-600 dark:text-gray-400">
             We are shaping the future with AI technology.
           </p>
         </div>
       </header>
 
-      <section className="bg-blue-500 py-16">
+      <section className="bg-blue-500 dark:bg-slate-900 py-16">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-8">
             <Link
@@ -37,9 +37,9 @@ const Home = () => {
         </div>
       </section>
 
-      <footer className="bg-gray-200 py-8">
+      <footer className="bg-gray-200 dark:bg-slate-950 py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-white">
             &copy; {new Date().getFullYear()} Futurus. All rights reserved.
           </p>
         </div>

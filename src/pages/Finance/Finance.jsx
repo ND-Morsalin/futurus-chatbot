@@ -1,12 +1,8 @@
-import "regenerator-runtime";
 import MicButton from "../../components/MicButton/MicButton";
 import useSpaceRecognitionAndVoice from "../../hooks/useSpaceRecognition/useSpaceRecognitionAndVoice";
 
-// speech synthesis instance
-// const synthesis = window.speechSynthesis;
-
-const Practice = () => {
-  const { listening, transcript, browserSupportsSpeechRecognition, speech } =
+const Finance = () => {
+    const { listening, transcript, browserSupportsSpeechRecognition, speech } =
     useSpaceRecognitionAndVoice();
 
   if (!browserSupportsSpeechRecognition) {
@@ -50,4 +46,4 @@ const Practice = () => {
   );
 };
 
-export default Practice;
+export default Finance;

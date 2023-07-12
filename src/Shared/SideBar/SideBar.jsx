@@ -9,6 +9,7 @@ import hrIconWhite from "../../assets/iconWhite/hrround.png";
 import ieltsIconWhite from "../../assets/iconWhite/ielts.png";
 import financeIconWhite from "../../assets/iconWhite/finance.png";
 import { useTheme } from "../../provider/theme/themeProvider";
+import { NavLink } from "react-router-dom";
 
 const sideItems = [
   {
@@ -19,19 +20,19 @@ const sideItems = [
   },
   {
     name: "HR Round",
-    path: "",
+    path: "hrround",
     icon: hrIcon,
     iconWhite: hrIconWhite,
   },
   {
     name: "Finance",
-    path: "",
+    path: "finance",
     icon: financeIcon,
     iconWhite: financeIconWhite,
   },
   {
     name: "IELTS",
-    path: "",
+    path: "ielts",
     icon: ieltsIcon,
     iconWhite: ieltsIconWhite,
   },
@@ -57,7 +58,17 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
             }`}
           >
             <div className={`relative z-40 p-px md:p-1 w-full `}>
-              <div className="relative p-2 bg-white dark:bg-slate-900 rounded-full flex items-center z-30  ">
+              <NavLink
+                end
+                to={item.path}
+                className={({ isActive }) =>
+                  `relative p-2  ${
+                    isActive
+                      ? "bg-slate-200 dark:bg-slate-800"
+                      : "bg-white dark:bg-slate-900"
+                  } rounded-full flex items-center z-30 `
+                }
+              >
                 <img
                   src={isDarkMode ? item.iconWhite : item.icon}
                   alt={item.name}
@@ -71,7 +82,7 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
                   {item.name}
                 </p>
                 {/* gradient border */}
-              </div>
+              </NavLink>
               <div className="absolute w-full h-full bg-gradient-to-tl from-gradient-blue  to-gradient-pink  left-0 top-0 z-0 rounded-full "></div>
             </div>
           </div>
@@ -86,3 +97,4 @@ const SideBar = ({ toggleSideBar, setToggleSideBar }) => {
 };
 
 export default SideBar;
+

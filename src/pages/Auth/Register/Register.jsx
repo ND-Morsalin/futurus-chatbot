@@ -34,7 +34,7 @@ const Register = () => {
       const data = res.data;
       console.log("data", data);
 
-      navigate('auth/login');
+      navigate('/auth/login');
     } catch (error) {
       console.log("location catch", location, error, error.message, inputError);
       console.error(error);
