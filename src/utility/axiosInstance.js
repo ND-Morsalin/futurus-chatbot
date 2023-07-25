@@ -39,7 +39,7 @@ axiosInstance.interceptors.request.use(request => {
   // console.log('Starting Request', request)
 
   // console.log(localStorage.getItem('jwttoken'));
-  request.headers.authorization =   `Bearer ${localStorage.getItem('jwttoken')}` || null;
+  request.headers.authorization =   `Bearer ${localStorage.getItem('access_token')}` || null;
 
 
   return request

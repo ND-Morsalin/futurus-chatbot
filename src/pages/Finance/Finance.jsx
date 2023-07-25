@@ -1,10 +1,19 @@
+import { useState } from "react";
 import MicButton from "../../components/MicButton/MicButton";
 import useSpaceRecognitionAndVoice from "../../hooks/useSpaceRecognition/useSpaceRecognitionAndVoice";
 
 const Finance = () => {
-    const { listening, transcript, browserSupportsSpeechRecognition, speech } =
-    useSpaceRecognitionAndVoice();
+  const [options, setOptions] = useState() 
+  const { listening, transcript, browserSupportsSpeechRecognition, speech } =
+    useSpaceRecognitionAndVoice({options,round:"finance"});
 
+   
+
+    const handleOptionsChange = (e) => {
+        setOptions(e.target.value)
+    }
+
+    // console.log(options)
   if (!browserSupportsSpeechRecognition) {
     return (
       <div className="flex items-center justify-center mb-8">
@@ -17,7 +26,7 @@ const Finance = () => {
 
   return (
     <div className="flex flex-col justify-end h-full flex-1">
-      <div className="mb-16 mx-auto rounded-md border-2 border-transparent relative z-10 p-1 md:w-2/3 w-11/12  overflow-auto h-fit">
+      <div className="mb-8 mx-auto rounded-md border-2 border-transparent relative z-10 p-1 md:w-2/3 w-11/12  overflow-auto h-fit">
         <div className="relative overflow-auto h-full z-10 bg-white dark:bg-slate-900 rounded-md p-4 dark:text-white text-slate-900">
           {listening ? (
             <>
@@ -35,12 +44,19 @@ const Finance = () => {
         <div className="absolute top-0 left-0 w-full h-full rounded-md bg-gradient-to-tr from-gradient-blue to-gradient-pink -z-0"></div>
       </div>
 
-      <div className="flex items-center justify-center mb-8">
+      <div className="flex items-center justify-center flex-col mb-4">
         <MicButton
           listening={listening}
           startListening={speech.startListening}
           stopListening={speech.stopListening}
         />
+        <select onChange={handleOptionsChange} className="select select-info w-fit mt-4">
+          <option value={''}>
+            Select Options
+          </option>
+          <option value='grammar'>Grammar</option>
+         
+        </select>
       </div>
     </div>
   );
