@@ -6,7 +6,7 @@ import { useState } from "react";
 const HomeLayout = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   // const { isDarkMode } = useTheme();
-  
+
   return (
     <>
       <Header
