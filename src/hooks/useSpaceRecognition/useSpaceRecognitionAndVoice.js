@@ -5,37 +5,37 @@ import axiosInstance from "../../utility/axiosInstance";
 
 const synthesis = window.speechSynthesis;
 
-const useSpaceRecognitionAndVoice = ({ options, round }) => {
+const useSpaceRecognitionAndVoice = () => {
     const { listening, transcript, browserSupportsSpeechRecognition } =
         useSpeechRecognition();
 
 
-    useEffect(() => {
-        // if not listening and has transcript then 
-        if (!listening && transcript) {
-            /* send text to server */
-            const sendTextToServer = async () => {
-                const req = await axiosInstance.post(`/pr`, {
-                    message: transcript,
-                    option: options
-                })
+    // useEffect(() => {
+    //     // if not listening and has transcript then 
+    //     if (!listening && transcript) {
+    //         /* send text to server */
+    //         const sendTextToServer = async () => {
+    //             const req = await axiosInstance.post(`/pr`, {
+    //                 message: transcript,
+    //                 option: options
+    //             })
 
-                console.log(req.data)
+    //             console.log(req.data)
                 
-                // text to speech
-                const utterance = new SpeechSynthesisUtterance(transcript + ' ' + options + ' ' + round);
-                // language
-                utterance.lang = "en-IN";
-                // voice
-                utterance.voice = speechSynthesis.getVoices()[89];
+    //             // text to speech
+    //             const utterance = new SpeechSynthesisUtterance(transcript + ' ' + options + ' ' + round);
+    //             // language
+    //             utterance.lang = "en-IN";
+    //             // voice
+    //             utterance.voice = speechSynthesis.getVoices()[89];
 
-                synthesis.speak(utterance);
-            };
+    //             synthesis.speak(utterance);
+    //         };
 
-            sendTextToServer();
+    //         sendTextToServer();
 
-        }
-    }, [listening, transcript]);
+    //     }
+    // }, [listening, transcript]);
 
 
     return (

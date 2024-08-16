@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layout/HomeLayout";
-// import Home from "../pages/Home/Home";
+import Home from "../pages/Home/Home";
 /* import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register"; */
@@ -13,6 +13,7 @@ import Practice from "../pages/PracticeRound/Practice";
 import HRround from "../pages/HRround/HRround";
 import IELTS from "../pages/IELTS/IELTS";
 import Finance from "../pages/Finance/Finance";
+import AudioFrequencyAnalyzer from "../components/AudioFrequencyAnalyzer/AudioFrequencyAnalyzer";
 
 const router = createBrowserRouter([
   {
@@ -22,13 +23,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HRround />,
+        element: <Home />,
+      },
+      {
+        path: "/audio-frequency-analyzer",
+        element: <AudioFrequencyAnalyzer />,
       },
     ],
   },
   {
     path: "bot",
-    element: <PrivateLayout />,
+    element: <HomeLayout />,
     children: [
       {
         path: "",
@@ -48,20 +53,20 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "auth",
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-    ],
-  } /**/,
+  // {
+  //   path: "auth",
+  //   element: <AuthLayout />,
+  //   children: [
+  //     {
+  //       path: "login",
+  //       element: <Login />,
+  //     },
+  //     {
+  //       path: "register",
+  //       element: <Register />,
+  //     },
+  //   ],
+  // } /**/,
 ]);
 
 export default router;

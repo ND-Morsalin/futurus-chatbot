@@ -65,11 +65,21 @@ const AudioFrequencyAnalyzer = () => {
             <p>Browser Supports Speech Recognition: {browserSupportsSpeechRecognition ? "Yes" : "No"}</p>
 
             <h3>Frequency Data</h3>
-            <ul>
-                {frequencyData.map((freq, index) => (
-                    <li key={index}>{freq}</li>
-                ))}
-            </ul>
+             {/* show frequencyData height value in p tag one line and replace old value */}
+             {
+                frequencyData.map((val, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      height: `${val}px`,
+                      width: "1px",
+                      backgroundColor: "blue",
+                      display: "inline-block",
+                    }}
+                  />
+                ))
+               }
+
         </div>
     );
 };
